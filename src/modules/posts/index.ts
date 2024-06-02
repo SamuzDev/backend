@@ -24,7 +24,7 @@ router.post('/', multerUpload.single('image'), async (req, res) => {
         const newPost: IPost = new Post({
 
             content,
-            image: req.file? `${process.env.PROTOCOL || 'http'}://${process.env.HOST || 'localhost'}:${process.env.PORT ? process.argv[3] : 8080}/uploads/${req.file.filename}` : null
+            image: req.file? `${process.env.PROTOCOL || 'http'}://${process.env.HOST || 'localhost'}/uploads/${req.file.filename}` : null
         });
         await newPost.save();
         res.status(201).json(newPost);
